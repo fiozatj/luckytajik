@@ -1,2 +1,2 @@
-# luckytajik
-webapp tg bot lucky tajik signals
+# Fioza Signal bot
+# Lucky Tajik

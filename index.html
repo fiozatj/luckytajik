@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fioza Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+
+    <!-- ПЕРСОНАЛИЗИРОВАННЫЙ ЭКРАН ЗАГРУЗКИ -->
+    <div id="loader-screen">
+        <div class="loader-content">
+            <img id="loader-avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Ccircle cx='48' cy='48' r='44' fill='%232d3748'/%3E%3Ctext x='48' y='56' font-family='Arial' font-size='36' fill='white' text-anchor='middle'%3E👤%3C/text%3E%3C/svg%3E" alt="Avatar" class="loader-avatar">
+            <div class="loader-spinner"></div>
+            <p class="loader-greeting">Добро пожаловать,</p>
+            <h2 id="loader-user-name" class="loader-user-name">Гость</h2>
+        </div>
+        
+        <a href="https://t.me/luckyTajBot" target="_blank" class="loader-footer-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15.91L18.22 21.2c-.24.62-.85.79-1.4.49l-4.78-3.51l-2.21 2.15c-.22.21-.4.33-.66.33z"></path>
+            </svg>
+            <span>@luckyTajBot</span>
+        </a>
+    </div>
+
+    <!-- Интерактивный курсор -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Анимированный фон -->
+    <div class="background-gradient"></div>
+    
+    <div id="app-content" class="hidden">
+        <!-- Шапка приложения -->
+        <header class="app-header">
+            <div class="user-info">
+                <div class="avatar-wrapper">
+                    <img id="userAvatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70' viewBox='0 0 70 70'%3E%3Ccircle cx='35' cy='35' r='30' fill='%234A90E2'/%3E%3Ctext x='35' y='42' font-family='Arial' font-size='28' fill='white' text-anchor='middle'%3E👤%3C/text%3E%3C/svg%3E" alt="Avatar" class="user-avatar">
+                    <div class="status-indicator"></div>
+                </div>
+                <div class="user-details">
+                    <h1 id="userName" class="user-name">Пользователь</h1>
+                    <p id="userId" class="user-id">ID: загрузка...</p>
+                </div>
+            </div>
+            <div class="header-controls">
+                <!-- ИЗМЕНЕНО: Кнопка заменена на ссылку с иконкой Telegram -->
+                <a id="shareBotBtn" href="https://t.me/luckyTajBot" target="_blank" class="action-btn" title="Наш Telegram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                        <path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15.91L18.22 21.2c-.24.62-.85.79-1.4.49l-4.78-3.51l-2.21 2.15c-.22.21-.4.33-.66.33z"></path>
+                    </svg>
+                </a>
+            </div>
+        </header>
+
+        <!-- Основной контент с компактной Bento-сеткой -->
+        <main class="main-content">
+            <div class="bento-grid">
+                <!-- Главная игра -->
+                <div class="game-card featured">
+                    <img src="avia.png" alt="Avia Masters" class="game-image">
+                    <div class="card-content">
+                        <div class="game-info">
+                            <div class="game-badge new">NEW</div>
+                            <h3 class="game-title">Avia Masters</h3>
+                        </div>
+                        <button class="game-button" onclick="openGame('avia')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+
+                <!-- Стандартные карточки (Все игры) -->
+                <div class="game-card">
+                    <img src="1.png" alt="Mines" class="game-image">
+                    <div class="game-badge hot">FEATURED</div>
+                    <div class="card-content">
+                        <h3 class="game-title">Mines</h3>
+                        <button class="game-button" onclick="openGame('mines')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="game-card">
+                    <img src="mimines.jpg" alt="Mines Spribe" class="game-image">
+                    <div class="game-badge hot">FEATURED</div>
+                    <div class="card-content">
+                        <h3 class="game-title">Mines Spribe</h3>
+                        <button class="game-button" onclick="openGame('spribe')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="game-card">
+                    <img src="king.png" alt="Chicken Road" class="game-image">
+                    <div class="game-badge new">New</div>
+                    <div class="card-content">
+                        <h3 class="game-title">King Thimbles</h3>
+                        <button class="game-button" onclick="openGame('king')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="game-card">
+                    <img src="road.png" alt="Chicken Road" class="game-image">
+                    <div class="game-badge new">New</div>
+                    <div class="card-content">
+                        <h3 class="game-title">Chicken Road</h3>
+                        <button class="game-button" onclick="openGame('chiroa')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="game-card">
+                    <img src="speedn.jpg" alt="Speed & Cash" class="game-image">
+                    <div class="game-badge new">New</div>
+                    <div class="card-content">
+                        <h3 class="game-title">Speed & Cash</h3>
+                        <button class="game-button" onclick="openGame('speedn')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="game-card">
+                    <img src="ball.jpg" alt="Balloon" class="game-image">
+                    <div class="game-badge new">New</div>
+                    <div class="card-content">
+                        <h3 class="game-title">Balloon</h3>
+                        <button class="game-button" onclick="openGame('ball')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="game-card">
+                    <img src="balloon.avif" alt="BA BALLOON" class="game-image">
+                    <div class="game-badge new">New</div>
+                    <div class="card-content">
+                        <h3 class="game-title">BA Balloon</h3>
+                        <button class="game-button" onclick="openGame('ba')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="game-card">
+                    <img src="mineisland.avif" alt="Mine Island" class="game-image">
+                    <div class="game-badge new">New</div>
+                    <div class="card-content">
+                        <h3 class="game-title">Mine Island</h3>
+                        <button class="game-button" onclick="openGame('mineisland')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+                 <div class="game-card">
+                    <img src="penafon.png" alt="Penalty Shoot" class="game-image">
+                    <div class="card-content">
+                        <h3 class="game-title">Penalty Shoot</h3>
+                        <button class="game-button" onclick="openGame('penalty')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="game-card">
+                    <img src="footxiconca.png" alt="Football X" class="game-image">
+                    <div class="card-content">
+                        <h3 class="game-title">Football X</h3>
+                        <button class="game-button" onclick="openGame('footballX')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="game-card">
+                    <img src="11.png" alt="CoinFlip" class="game-image">
+                    <div class="card-content">
+                        <h3 class="game-title">CoinFlip</h3>
+                        <button class="game-button" onclick="openGame('coin')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="game-card">
+                    <img src="5.png" alt="LuckyJet" class="game-image">
+                    <div class="card-content">
+                        <h3 class="game-title">LuckyJet</h3>
+                        <button class="game-button" onclick="openGame('lucky')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="game-card">
+                    <img src="6.png" alt="Aviator" class="game-image">
+                    <div class="card-content">
+                        <h3 class="game-title">Aviator</h3>
+                        <button class="game-button" onclick="openGame('aviator')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="game-card">
+                    <img src="minesnew.jpg" alt="Mines New" class="game-image">
+                    <div class="card-content">
+                        <h3 class="game-title">Mines New</h3>
+                        <button class="game-button" onclick="openGame('minesnew')">Играть</button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Оверлей для анимации запуска игры -->
+    <div id="launch-overlay">
+        <div class="loader"></div>
+        <p class="launch-text">ЗАПУСК ИГРЫ...</p>
+    </div>
+
+    <!-- UI Звуки -->
+    <audio id="hover-sound" src="https://www.zapsplat.com/wp-content/uploads/2015/sound-design/ui_loading_screen_generic_progress_tick_003_84224.mp3" preload="auto"></audio>
+    <audio id="click-sound" src="https://www.zapsplat.com/wp-content/uploads/2015/sound-design/multimedia_button_click_023.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
